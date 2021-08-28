@@ -1,0 +1,12 @@
+spring:
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/spring-boot-liquibase
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+  liquibase:
+    enabled: false #Doesn't update liquibase while app running
