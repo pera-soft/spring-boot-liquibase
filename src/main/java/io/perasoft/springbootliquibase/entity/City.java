@@ -24,4 +24,8 @@ public class City extends BaseEntity {
 
     @OneToMany(mappedBy = "city")
     private List<District> districts;
+
+    @Column(nullable = false)
+    private String licencePlateCode;
+
 }

@@ -1,0 +1,11 @@
+databaseChangeLog:
+- changeSet:
+    id: 1630157458454-1
+    author: oguzhan.cevik (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: licence_plate_code
+            type: varchar(255)
+        tableName: city
