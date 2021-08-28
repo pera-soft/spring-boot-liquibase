@@ -18,6 +18,8 @@
 
 	<properties>
 		<java.version>11</java.version>
+		<maven.build.timestamp.format>yyyy-MM-dd-HH-mm</maven.build.timestamp.format>
+		<liquibase-hibernate5.version>4.1.1</liquibase-hibernate5.version>
 	</properties>
 
 	<dependencies>
@@ -62,6 +64,34 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<configuration>
+					<changeLogFile>src/main/resources/liquibase/database-change-log.yaml</changeLogFile>
+					<diffChangeLogFile>
+						src/main/resources/liquibase/diff/change-log-${maven.build.timestamp}-${user.name}.yaml
+					</diffChangeLogFile>
+					<verbose>true</verbose>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.liquibase.ext</groupId>
+						<artifactId>liquibase-hibernate5</artifactId>
+						<version>${liquibase-hibernate5.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-data-jpa</artifactId>
+						<version>${project.parent.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-validation</artifactId>
+						<version>${project.parent.version}</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
