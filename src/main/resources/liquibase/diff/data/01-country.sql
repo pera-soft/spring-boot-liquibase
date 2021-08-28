@@ -1,0 +1,1 @@
+INSERT INTO public.country (id, deleted, code, name) VALUES ('fe69387e-da88-4757-95a6-22ac7d14ba1c', false, '1', 'Türkiye');

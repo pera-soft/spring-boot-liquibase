@@ -1,0 +1,196 @@
+databaseChangeLog:
+- changeSet:
+    id: 1630157199719-1
+    author: oguzhan.cevik (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: cityPK
+            name: id
+            type: UUID
+        - column:
+            name: deleted
+            type: BOOLEAN
+        - column:
+            constraints:
+              nullable: false
+            name: code
+            type: VARCHAR(2)
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(14)
+        - column:
+            constraints:
+              nullable: false
+            name: country_id
+            type: UUID
+        tableName: city
+- changeSet:
+    id: 1630157199719-2
+    author: oguzhan.cevik (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: countryPK
+            name: id
+            type: UUID
+        - column:
+            name: deleted
+            type: BOOLEAN
+        - column:
+            constraints:
+              nullable: false
+            name: code
+            type: VARCHAR(1)
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(10)
+        tableName: country
+- changeSet:
+    id: 1630157199719-3
+    author: oguzhan.cevik (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: districtPK
+            name: id
+            type: UUID
+        - column:
+            name: deleted
+            type: BOOLEAN
+        - column:
+            constraints:
+              nullable: false
+            name: code
+            type: VARCHAR(4)
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(20)
+        - column:
+            constraints:
+              nullable: false
+            name: city_id
+            type: UUID
+        tableName: district
+- changeSet:
+    id: 1630157199719-4
+    author: oguzhan.cevik (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: neighborhoodPK
+            name: id
+            type: UUID
+        - column:
+            name: deleted
+            type: BOOLEAN
+        - column:
+            constraints:
+              nullable: false
+            name: code
+            type: VARCHAR(7)
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(80)
+        - column:
+            constraints:
+              nullable: false
+            name: district_id
+            type: UUID
+        tableName: neighborhood
+- changeSet:
+    id: 1630157199719-5
+    author: oguzhan.cevik (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: code
+        constraintName: UC_CITYCODE_COL
+        tableName: city
+- changeSet:
+    id: 1630157199719-6
+    author: oguzhan.cevik (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: code
+        constraintName: UC_COUNTRYCODE_COL
+        tableName: country
+- changeSet:
+    id: 1630157199719-7
+    author: oguzhan.cevik (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: code
+        constraintName: UC_DISTRICTCODE_COL
+        tableName: district
+- changeSet:
+    id: 1630157199719-8
+    author: oguzhan.cevik (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: code
+        constraintName: UC_NEIGHBORHOODCODE_COL
+        tableName: neighborhood
+- changeSet:
+    id: 1630157199719-9
+    author: oguzhan.cevik (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: district_id
+        baseTableName: neighborhood
+        constraintName: FKpmmrhmbyp8rlscs6vk85o2u1u
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: district
+        validate: true
+- changeSet:
+    id: 1630157199719-10
+    author: oguzhan.cevik (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: country_id
+        baseTableName: city
+        constraintName: FKrpd7j1p7yxr784adkx4pyepba
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: country
+        validate: true
+- changeSet:
+    id: 1630157199719-11
+    author: oguzhan.cevik (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: city_id
+        baseTableName: district
+        constraintName: FKsgx09prp6sk2f0we38bf2dtal
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: city
+        validate: true
+
